@@ -2,7 +2,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
 public class BasicTeleop extends OpMode {
@@ -19,14 +18,21 @@ public class BasicTeleop extends OpMode {
         left = hardwareMap.get(DcMotor.class, "left");
         right = hardwareMap.get(DcMotor.class, "right");
     }
-// left = 2
+    // left = 2
     // front = 0
     // right = 1
+    //back = 3
     @Override
     public void loop() {
-        left.setDirection(DcMotorSimple.Direction.FORWARD);
-        left.setDirection(DcMotorSimple.Direction.FORWARD);
-        left.setPower(gamepad1.left_stick_y);
-        right.setPower(gamepad1.left_stick_y);
+        double angularSpeed = -gamepad1.right_stick_x;
+
+        left.setDirection(DcMotorSimple.Direction.REVERSE);
+        right.setDirection(DcMotorSimple.Direction.FORWARD);
+        front.setDirection(DcMotorSimple.Direction.REVERSE);
+        back.setDirection(DcMotorSimple.Direction.FORWARD);
+        left.setPower(-gamepad1.left_stick_y +  angularSpeed);
+        right.setPower(-gamepad1.left_stick_y - angularSpeed);
+        front.setPower( gamepad1.left_stick_x + angularSpeed);
+        back.setPower(gamepad1.left_stick_x - angularSpeed);
     }
 }
