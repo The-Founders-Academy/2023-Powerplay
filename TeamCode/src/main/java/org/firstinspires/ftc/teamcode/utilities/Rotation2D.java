@@ -29,7 +29,7 @@ public class Rotation2D {
 
     /**
      * Converts a given angle in radians to an equivalent angle in degrees
-     * @param angleRadians
+     * @param angleRadians the specified angle in radians
      * @return angleRadians in degrees
      */
     public static double toDegrees(double angleRadians) {
@@ -38,12 +38,27 @@ public class Rotation2D {
 
     /**
      * Converts a given angle in degrees to an equivalent angle in radians
-     * @param angleDegrees
+     * @param angleDegrees the specified angle in degrees
      * @return angleRadians in radians
      */
     public static double toRadians(double angleDegrees) {
         return Math.toRadians(angleDegrees);
     }
 
+    /**
+     * Returns the currently stored angle in degrees
+     * @return the currently stored angle in degrees
+     */
+    public double getAngleDegrees() {
+        return m_angleDegrees;
+    }
+
+    /**
+     * returns the currently stored angle in radians
+     * @return the currently stored angle in radians
+     */
+    public double getAngleRadians() {
+        return m_angleRadians;
+    }
 
 }
