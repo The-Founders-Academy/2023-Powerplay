@@ -14,5 +14,9 @@ public class Pose2D {
         this.m_rotation = rotation;
     }
 
+    public Translation2D getTranslation() {
+        return m_translation;
+    }
+
 
 }
