@@ -46,10 +46,10 @@ public class XDrive {
     }
 
     public void robotRelativeDrive(double velocityX, double velocityY, double angularSpeed) {
-        front.setPower(velocityX);
-        back.setPower(velocityX);
-        right.setPower(velocityY);
-        left.setPower(velocityY);
+        front.setPower(velocityX - angularSpeed);
+        back.setPower(velocityX + angularSpeed);
+        right.setPower(velocityY + angularSpeed);
+        left.setPower(velocityY - angularSpeed);
     }
 
     public void driveToPosition(double x, double y, double angleRadians) {

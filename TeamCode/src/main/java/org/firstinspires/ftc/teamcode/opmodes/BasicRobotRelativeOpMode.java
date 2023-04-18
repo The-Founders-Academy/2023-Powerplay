@@ -15,6 +15,6 @@ public class BasicRobotRelativeOpMode extends OpMode {
 
     @Override
     public void loop() {
-        m_xDrive.robotRelativeDrive(gamepad1.left_stick_x, -gamepad1.left_stick_y, 0);
+        m_xDrive.robotRelativeDrive(gamepad1.left_stick_x, -gamepad1.left_stick_y, gamepad1.right_stick_x);
     }
 }
