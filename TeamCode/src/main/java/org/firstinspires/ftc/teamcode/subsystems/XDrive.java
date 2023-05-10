@@ -39,6 +39,7 @@ public class XDrive {
     }
 
     public void fieldRelativeDrive(double velocityX, double velocityY, double angularSpeed) {
+        double angle = m_robotPose.getRotation().getAngleDegrees();
         front.setPower(0);
         back.setPower(0);
         left.setPower(0);
