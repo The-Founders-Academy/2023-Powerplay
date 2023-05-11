@@ -38,12 +38,14 @@ public class XDrive {
 
     }
 
-    public void fieldRelativeDrive(double velocityX, double velocityY, double angularSpeed) {
-        double angle = m_robotPose.getRotation().getAngleDegrees();
-        front.setPower(0);
-        back.setPower(0);
-        left.setPower(0);
-        right.setPower(0);
+    public void fieldRelativeDrive(double velocity, double linearAngle, double angularSpeed) {
+        double angle = linearAngle - m_robotPose.getRotation().getAngleDegrees(); // Transform linearAngle to robot coordinates. 0 degree is ALWAYS 3 o'clock.
+        double pFB = velocity * Math.cos(angle);
+        double pLR = velocity * Math.sin(angle);
+        front.setPower(pFB - angularSpeed);
+        back.setPower(pFB + angularSpeed);
+        left.setPower(pLR + angularSpeed);
+        right.setPower(pLR - angularSpeed);
     }
 
     public void robotRelativeDrive(double velocityX, double velocityY, double angularSpeed) {
