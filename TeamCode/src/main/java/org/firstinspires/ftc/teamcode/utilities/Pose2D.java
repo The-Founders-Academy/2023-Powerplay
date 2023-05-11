@@ -21,4 +21,8 @@ public class Pose2D {
     public Rotation2D getRotation() {
         return m_rotation;
     }
+
+    public void setRotation(Rotation2D rotation) {
+        m_rotation = rotation;
+    }
 }

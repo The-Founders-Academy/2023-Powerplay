@@ -68,4 +68,12 @@ public class Rotation2D {
     public Rotation2D minus(Rotation2D other) {
         return new Rotation2D(m_angleDegrees - other.getAngleDegrees());
     }
+
+    public static Rotation2D fromDegrees(double degrees) {
+        return new Rotation2D(Rotation2D.toRadians(degrees));
+    }
+
+    public static Rotation2D fromRadians(double radians) {
+        return new Rotation2D(radians);
+    }
     }

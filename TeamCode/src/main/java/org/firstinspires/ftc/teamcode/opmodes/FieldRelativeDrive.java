@@ -17,9 +17,11 @@ public class FieldRelativeDrive extends OpMode {
 
     @Override
     public void loop() {
-        double velocityAngle = Math.atan2(gamepad1.left_stick_x, -gamepad1.left_stick_y);
+        double velocityAngle = ((Math.atan2(gamepad1.left_stick_x, -gamepad1.left_stick_y) % 360) + 360) % 360;
         double velocityMagnitude = Math.sqrt(Math.pow(gamepad1.left_stick_x, 2) + Math.pow(gamepad1.left_stick_y, 2));
-        double angularVelocity = gamepad1.left_stick_x;
+        double angularVelocity = gamepad1.right_stick_x;
+        m_xDrive.update();
+        telemetry.update();
         m_xDrive.fieldRelativeDrive(velocityMagnitude, velocityAngle, angularVelocity);
     }
 }
