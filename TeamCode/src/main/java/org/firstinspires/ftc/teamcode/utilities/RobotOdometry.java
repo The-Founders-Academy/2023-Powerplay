@@ -32,4 +32,8 @@ public class RobotOdometry {
         );
         return (double) myRobotOrientation.firstAngle;
     }
+
+    public void resetAngle() {
+        m_imu.resetYaw();
+    }
 }

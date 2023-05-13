@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.gamepad1;
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -43,16 +42,13 @@ public class XDrive {
 
     public void fieldRelativeDrive(double velocity, double linearAngle, double angularSpeed) {
         double angle = linearAngle - m_robotPose.getRotation().getAngleDegrees(); // Transform linearAngle to robot coordinates. 0 degree is ALWAYS 3 o'clock.
-        double pFB = velocity * Math.cos(angle);
-        double pLR = velocity * Math.sin(angle);
+        double pFB = velocity * Math.cos(Rotation2D.toRadians(angle));
+        double pLR = velocity * Math.sin(Rotation2D.toRadians(angle));
 
-        telemetry.addData("powerForwardBack", pFB);
-        telemetry.addData("powerLeftRight", pLR);
-
-        front.setPower(pFB);
-        back.setPower(pFB);
-        left.setPower(pLR);
-        right.setPower(pLR);
+        front.setPower(pFB - angularSpeed);
+        back.setPower(pFB + angularSpeed);
+        left.setPower(pLR - angularSpeed);
+        right.setPower(pLR + angularSpeed);
     }
 
     public void robotRelativeDrive(double velocityX, double velocityY, double angularSpeed) {
@@ -70,6 +66,10 @@ public class XDrive {
         m_robotPose = new Pose2D(translation, rotation);
     }
 
+    public void resetAngleToZero() {
+        m_odometry.resetAngle();
+    }
+
     public Translation2D getTranslation() {
         return m_robotPose.getTranslation();
     }
@@ -80,6 +80,6 @@ public class XDrive {
 
     public void update() {
         m_robotPose.setRotation(Rotation2D.fromDegrees(((m_odometry.getYawDegrees() % 360) + 360) % 360));
-        telemetry.addData("robotRotation", m_robotPose.getRotation().getAngleDegrees());
     }
+
 }
