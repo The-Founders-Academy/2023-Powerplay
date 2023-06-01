@@ -14,7 +14,7 @@ public class RobotOdometry {
     public RobotOdometry(IMU imu) {
         m_imu = imu;
         IMU.Parameters imuParameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
+                RevHubOrientationOnRobot.LogoFacingDirection.RIGHT,
                 RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD
         ));
         m_imu.initialize(imuParameters);
