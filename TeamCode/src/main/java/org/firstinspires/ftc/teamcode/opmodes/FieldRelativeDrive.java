@@ -2,17 +2,23 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.teamcode.subsystems.XDrive;
 
 @TeleOp(name="Field Relative Drive", group="Iterative Opmode")
 public class FieldRelativeDrive extends OpMode {
-
     private XDrive m_xDrive;
 
     @Override
     public void init() {
-        m_xDrive = new XDrive("front", "back",  "left", "right", hardwareMap);
+        DcMotor frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+        DcMotor frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
+        DcMotor backRight = hardwareMap.get(DcMotor.class, "backRight");
+        DcMotor backLeft = hardwareMap.get(DcMotor.class, "backLeft");
+        IMU imu = hardwareMap.get(IMU.class, "imu");
+        m_xDrive = new XDrive(frontRight, frontLeft, backRight, backLeft, imu);
     }
 
     @Override
